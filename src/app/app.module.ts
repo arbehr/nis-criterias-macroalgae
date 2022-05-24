@@ -7,7 +7,9 @@ import { MicroalgaeComponent } from './microalgae/microalgae.component';
 import { MicroalgaeDetailComponent } from './microalgae-detail/microalgae-detail.component';
 import { MicroalgaeVerifyComponent } from './microalgae-verify/microalgae-verify.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatStepperModule} from '@angular/material/stepper';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import {MatStepperModule} from '@angular/material/stepper';
     FormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatStepperModule
+    MatStepperModule,
+    MatInputModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

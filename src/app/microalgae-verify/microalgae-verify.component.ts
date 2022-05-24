@@ -7,9 +7,32 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 })
 export class MicroalgaeVerifyComponent implements OnInit {
 
-  constructor() { }
+  selectedOriginTypeLoc: string;
+  selectedDistribution: string;
+  selectedVector: string;
+  selectedReports: string;
+  selectedConspicuouness: string;
+  selectedStudies: string;
+  selectedOrigin: string;
+  selectedEconomicEcologicalImpact: string;
+  selectedCriteriaInvasivenessSpread: string;
+  selectedCriteriaInvasivenessOther: string;
+
+  constructor() { 
+    this.selectedOriginTypeLoc = '';
+    this.selectedDistribution = '';
+    this.selectedVector = '';
+    this.selectedReports = '';
+    this.selectedConspicuouness = '';
+    this.selectedStudies = '';
+    this.selectedOrigin = '';
+    this.selectedEconomicEcologicalImpact = '';
+    this.selectedCriteriaInvasivenessSpread = '';
+    this.selectedCriteriaInvasivenessOther = '';
+  }
 
   ngOnInit(): void {
+    
   }
 
 }
