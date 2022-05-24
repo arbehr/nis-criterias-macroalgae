@@ -1,0 +1,10 @@
+<div *ngIf="selectedMicroalgae">
+    <h2>{{selectedMicroalgae.specie | uppercase}} Details</h2>
+    <div>id: {{selectedMicroalgae.id}}</div>
+    <div class="details">
+      <label for="microalgae-name">Microalgae specie: </label>
+      <input class="specie" [(ngModel)]="selectedMicroalgae.specie" placeholder="specie">
+    </div> 
+</div>
+
+<button type="button" (click)="goBack()">Go back</button>

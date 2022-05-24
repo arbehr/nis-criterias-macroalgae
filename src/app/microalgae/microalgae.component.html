@@ -1,0 +1,8 @@
+<h2>Microalgae List</h2>
+<ul class="microalgae">
+  <li *ngFor="let microalgae of microalgae_list">
+    <a routerLink="/detail/{{microalgae.id}}" >
+      <span class="badge">{{microalgae.id}}</span>{{microalgae.specie}}
+      </a>
+  </li>
+</ul>
