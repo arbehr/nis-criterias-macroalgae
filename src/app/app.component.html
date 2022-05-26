@@ -1,6 +1,23 @@
-<h1>{{title}}</h1>
-<nav>
-  <a routerLink="/list">List</a>
-  <a routerLink="/verify">Verify</a>
-</nav>
+<mat-toolbar color="primary">
+  <button mat-button routerLink="/">
+      <mat-icon>home</mat-icon> 
+      {{title}}
+  </button>
+
+  <span class="fill-remaining-space"></span>
+
+  <div fxLayout="row" fxHide fxShow.gt-sm>
+      <button mat-button routerLink="/list">List</button>
+      <button mat-button routerLink="/verify">Verify</button>
+  </div>
+  <button mat-button [mat-menu-trigger-for]="menu" fxShow fxHide.gt-sm>
+   <mat-icon>menu</mat-icon>
+  </button>
+
+</mat-toolbar>
+<mat-menu x-position="before" #menu>
+  <button mat-menu-item routerLink="/list">List</button>
+  <button mat-menu-item routerLink="/verify">Verify</button>
+</mat-menu>
+
 <router-outlet></router-outlet>

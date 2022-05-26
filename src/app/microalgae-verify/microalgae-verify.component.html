@@ -1,104 +1,202 @@
 <mat-stepper orientation="vertical">
-    <mat-step>
-      <ng-template matStepLabel>Origin / Type locality</ng-template>
-      <ng-template matStepContent>
-        <mat-form-field appearance="fill">
-          <mat-label>Select an option</mat-label>
-          <mat-select [(ngModel)]="selectedOriginTypeLoc" name="originTypeLoc">
-            <mat-option [value]="1.1">
-              1.1 - Macaronesia
+  <mat-step state="check">
+    <ng-template matStepLabel>1. Origin / Type locality</ng-template>
+    <ng-template matStepContent>
+      <mat-form-field appearance="fill">
+        <mat-label>Select an option</mat-label>
+        <mat-select [(ngModel)]="selectedValues[0]" name="originTypeLoc" 
+          (ngModelChange)="onChangeOriginTypeLoc($event)" [disabled]="disabledValues[0]">
+          <mat-option *ngFor="let item of originTypeLoc" [value]="item.value">
+            {{item.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <span style="padding-left: 10px">
+        <button mat-button matStepperNext aria-label="Next" matTooltip="Next"><mat-icon>arrow_downward</mat-icon></button>
+      </span>  
+    </ng-template>
+  </mat-step>
+  <mat-step *ngIf="!disabledValues[1]" state="check">
+    <ng-template matStepLabel>2. Distribution</ng-template>
+    <ng-template matStepContent>
+      <p>This content was also rendered lazily</p>
+      <mat-form-field appearance="fill">
+        <mat-label>Select an option</mat-label>
+        <mat-select [(ngModel)]="selectedValues[1]" name="distribution" 
+          (ngModelChange)="onChangeDistribution($event)" [disabled]="disabledValues[1]">
+          <mat-optgroup label="2.1 - No biogeographic discontinuity">
+            <mat-option *ngFor="let item of distribution_21" [value]="item.value">
+              {{item.viewValue}}
             </mat-option>
-            <mat-option [value]="1.2">
-              1.2 - NE Atlantic
+          </mat-optgroup>
+          <mat-optgroup label="2.2 - Biogeographic discontinuity">
+            <mat-option *ngFor="let item of distribution_22" [value]="item.value">
+              {{item.viewValue}}
             </mat-option>
-            <mat-option [value]="1.3">
-              1.3 - Mediterranean
+          </mat-optgroup>
+          <mat-optgroup label="2.3 - Biogeographic discontinuity unknown or uncertain">
+            <mat-option *ngFor="let item of distribution_23" [value]="item.value">
+              {{item.viewValue}}
             </mat-option>
-            <mat-option [value]="1.4">
-              1.4 - NW Atlantic
-            </mat-option>
-            <mat-option [value]="1.5">
-              1.5 - Other ocean basin (including South Atlantic)
-            </mat-option>
-            <mat-option [value]="1.6">
-              1.6 - Uncertain
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-        <button mat-button matStepperNext>Next</button>
-      </ng-template>
-    </mat-step>
-    <mat-step>
-      <ng-template matStepLabel>Distribution</ng-template>
-      <ng-template matStepContent>
-        <p>This content was also rendered lazily</p>
-        <mat-form-field appearance="fill">
-          <mat-label>Select an option</mat-label>
-          <select matNativeControl>
-            <optgroup label="2.1 - No biogeographic discontinuity">
-              <option value="2.1.1">2.1.1 - Endemic from Macaronesia + Distribution throughout the Macaronesia</option>
-              <option value="2.1.2">2.1.2 - Nekton or Plankton widely distributed in the North Atlantic </option>
-              <option value="2.1.3">2.1.3 - Deep sea species</option>
-            </optgroup>
-            <optgroup label="2.2 - Biogeographic discontinuity">
-              <option value="2.2.1">2.2.1 - Present only in other ocean basins (excepto Azores)</option>
-            </optgroup>
-            <optgroup label="2.3 - Biogeographic discontinuity unknown or uncertain">
-              <option value="2.3.1">2.3.1 - Present in NE Atlantic</option>
-            </optgroup>
-          </select>
-        </mat-form-field>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
-      </ng-template>
-    </mat-step>
-    <mat-step>
-      <ng-template matStepLabel>Vector</ng-template>
-      <p>This content was rendered eagerly</p>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button matStepperNext>Next</button>
-    </mat-step>
-    <mat-step>
-      <ng-template matStepLabel>Reports - Historic presence in region</ng-template>
-      <p>This content was rendered eagerly</p>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button matStepperNext>Next</button>
-    </mat-step>
-    <mat-step>
-      <ng-template matStepLabel>Conspicuousness</ng-template>
-      <p>This content was rendered eagerly</p>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button matStepperNext>Next</button>
-    </mat-step>
-    <mat-step>
-      <ng-template matStepLabel>Studies</ng-template>
-      <p>This content was rendered eagerly</p>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button matStepperNext>Next</button>
-    </mat-step>
-    <mat-step>
-      <ng-template matStepLabel>Origin</ng-template>
-      <p>This content was rendered eagerly</p>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button matStepperNext>Next</button>
-    </mat-step>
-    <mat-step>
-      <ng-template matStepLabel>Economic and/or ecological impact</ng-template>
-      <p>This content was rendered eagerly</p>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button matStepperNext>Next</button>
-    </mat-step>
-    <mat-step>
-      <ng-template matStepLabel>Criteria invasiveness - spread</ng-template>
-      <p>This content was rendered eagerly</p>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button matStepperNext>Next</button>
-    </mat-step>
-    <mat-step>
-      <ng-template matStepLabel>Criteria invasiveness - other</ng-template>
-      <p>This content was rendered eagerly</p>
-      
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button matStepperNext>Next</button>
-    </mat-step>
-  </mat-stepper>
+          </mat-optgroup>
+        </mat-select>
+      </mat-form-field>
+      <span style="padding-left: 10px">
+          <button mat-button matStepperNext aria-label="Next" matTooltip="Next"><mat-icon>arrow_downward</mat-icon></button>
+          <button mat-button matStepperPrevious aria-label="Back" matTooltip="Back"><mat-icon>arrow_upward</mat-icon></button>
+      </span>      
+    </ng-template>
+  </mat-step>
+  <mat-step *ngIf="!disabledValues[2]" state="check">
+    <ng-template matStepLabel>3. Vector</ng-template>
+    <ng-template matStepContent>
+      <mat-form-field appearance="fill">
+        <mat-label>Select an option</mat-label>
+        <mat-select [(ngModel)]="selectedValues[2]" name="vector" 
+          (ngModelChange)="onChangeVector($event)" [disabled]="disabledValues[2]">
+          <mat-option *ngFor="let item of vector" [value]="item.value">
+            {{item.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <span style="padding-left: 10px">
+        <button mat-button matStepperNext aria-label="Next" matTooltip="Next"><mat-icon>arrow_downward</mat-icon></button>
+        <button mat-button matStepperPrevious aria-label="Back" matTooltip="Back"><mat-icon>arrow_upward</mat-icon></button>
+      </span>  
+    </ng-template>
+  </mat-step>
+  <mat-step *ngIf="!disabledValues[3]" state="check">
+    <ng-template matStepLabel>4. Reports - Historic presence in region</ng-template>
+    <ng-template matStepContent>
+      <mat-form-field appearance="fill">
+        <mat-label>Select an option</mat-label>
+        <mat-select [(ngModel)]="selectedValues[3]" name="reports"
+          (ngModelChange)="onChangeReports($event)" [disabled]="disabledValues[3]">
+          <mat-option *ngFor="let item of reports" [value]="item.value">
+            {{item.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <span style="padding-left: 10px">
+        <button mat-button matStepperNext aria-label="Next" matTooltip="Next"><mat-icon>arrow_downward</mat-icon></button>
+        <button mat-button matStepperPrevious aria-label="Back" matTooltip="Back"><mat-icon>arrow_upward</mat-icon></button>
+      </span>  
+    </ng-template>
+  </mat-step>
+  <mat-step *ngIf="!disabledValues[4]" state="check">
+    <ng-template matStepLabel>5. Conspicuousness</ng-template>
+    <ng-template matStepContent>
+      <mat-form-field appearance="fill">
+        <mat-label>Select an option</mat-label>
+        <mat-select [(ngModel)]="selectedValues[4]" name="conspicuousness" 
+          (ngModelChange)="onChangeConspicuouness($event)" [disabled]="disabledValues[4]">
+          <mat-option *ngFor="let item of conspicuousness" [value]="item.value">
+            {{item.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <span style="padding-left: 10px">
+        <button mat-button matStepperNext aria-label="Next" matTooltip="Next"><mat-icon>arrow_downward</mat-icon></button>
+        <button mat-button matStepperPrevious aria-label="Back" matTooltip="Back"><mat-icon>arrow_upward</mat-icon></button>
+      </span>  
+    </ng-template>
+  </mat-step>
+  <mat-step *ngIf="!disabledValues[5]" state="check">
+    <ng-template matStepLabel>6. Studies</ng-template>
+    <ng-template matStepContent>
+      <mat-form-field appearance="fill">
+        <mat-label>Select an option</mat-label>
+        <mat-select [(ngModel)]="selectedValues[5]" name="studies" 
+          (ngModelChange)="onChangeStudies($event)" [disabled]="disabledValues[5]">
+          <mat-option *ngFor="let item of studies" [value]="item.value">
+            {{item.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <span style="padding-left: 10px">
+        <button mat-button matStepperNext aria-label="Next" matTooltip="Next"><mat-icon>arrow_downward</mat-icon></button>
+        <button mat-button matStepperPrevious aria-label="Back" matTooltip="Back"><mat-icon>arrow_upward</mat-icon></button>
+      </span>  
+    </ng-template>
+  </mat-step>
+  <mat-step *ngIf="!disabledValues[6]" state="check">
+    <ng-template matStepLabel>7. Origin</ng-template>
+    <ng-template matStepContent>
+      <mat-form-field appearance="fill">
+        <mat-label>Select an option</mat-label>
+        <mat-select [(ngModel)]="selectedValues[6]" name="origin" 
+          (ngModelChange)="onChangeOrigin($event)" [disabled]="disabledValues[6]">
+          <mat-option *ngFor="let item of origin" [value]="item.value">
+            {{item.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <span style="padding-left: 10px">
+        <button mat-button matStepperNext aria-label="Next" matTooltip="Next"><mat-icon>arrow_downward</mat-icon></button>
+        <button mat-button matStepperPrevious aria-label="Back" matTooltip="Back"><mat-icon>arrow_upward</mat-icon></button>
+      </span>  
+    </ng-template>
+  </mat-step>
+  <mat-step *ngIf="!disabledValues[7]" state="check">
+    <ng-template matStepLabel>8. Economic and/or ecological impact</ng-template>
+    <ng-template matStepContent>
+      <mat-form-field appearance="fill">
+        <mat-label>Select an option</mat-label>
+        <mat-select [(ngModel)]="selectedValues[7]" name="economicEcologicalImpact" 
+          (ngModelChange)="onChangeEconomic_ecologic_impact($event)" [disabled]="disabledValues[7]">
+          <mat-option *ngFor="let item of economicEcologicalImpact" [value]="item.value">
+            {{item.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <span style="padding-left: 10px">
+        <button mat-button matStepperNext aria-label="Next" matTooltip="Next"><mat-icon>arrow_downward</mat-icon></button>
+        <button mat-button matStepperPrevious aria-label="Back" matTooltip="Back"><mat-icon>arrow_upward</mat-icon></button>
+      </span>  
+    </ng-template>
+  </mat-step>
+  <mat-step *ngIf="!disabledValues[8]" state="check">
+    <ng-template matStepLabel>9. Criteria invasiveness - spread</ng-template>
+    <ng-template matStepContent>
+      <mat-form-field appearance="fill">
+        <mat-label>Select an option</mat-label>
+        <mat-select [(ngModel)]="selectedValues[8]" name="criteriaInvasivenessSpread" 
+          (ngModelChange)="onChangeCriteria_invasiveness_spread($event)" [disabled]="disabledValues[8]">
+          <mat-option *ngFor="let item of criteriaInvasivenessSpread" [value]="item.value">
+            {{item.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <span style="padding-left: 10px">
+        <button mat-button matStepperNext aria-label="Next" matTooltip="Next"><mat-icon>arrow_downward</mat-icon></button>
+        <button mat-button matStepperPrevious aria-label="Back" matTooltip="Back"><mat-icon>arrow_upward</mat-icon></button>
+      </span>  
+    </ng-template>
+  </mat-step>
+  <mat-step *ngIf="!disabledValues[9]" state="check">
+    <ng-template matStepLabel>10. Criteria invasiveness - other</ng-template>
+    <ng-template matStepContent>
+      <mat-form-field appearance="fill">
+        <mat-label>Select an option</mat-label>
+        <mat-select multiple [(ngModel)]="selectedValues[9]" name="criteriaInvasivenessOther" 
+          (ngModelChange)="onChangeCriteria_invasiveness_other($event)"  [disabled]="disabledValues[9]">
+          <mat-option *ngFor="let item of criteriaInvasivenessOther" [value]="item.value">
+            {{item.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <span style="padding-left: 10px">
+        <button mat-button matStepperPrevious aria-label="Back" matTooltip="Back"><mat-icon>arrow_upward</mat-icon></button>
+      </span>
+    </ng-template>
+  </mat-step>
+  <ng-template matStepperIcon="check">
+    <mat-icon>check</mat-icon>
+  </ng-template>
+</mat-stepper>
+
+<div id="footer">
+  <p class="text-footer"> Status: {{status}} </p>
+</div>
+
+  

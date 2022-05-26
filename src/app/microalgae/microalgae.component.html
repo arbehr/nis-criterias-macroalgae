@@ -1,8 +1,27 @@
-<h2>Microalgae List</h2>
-<ul class="microalgae">
-  <li *ngFor="let microalgae of microalgae_list">
-    <a routerLink="/detail/{{microalgae.id}}" >
-      <span class="badge">{{microalgae.id}}</span>{{microalgae.specie}}
-      </a>
-  </li>
-</ul>
+<h2>Macroalgae List</h2>
+<form class="example-form">
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Specie</mat-label>
+    <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+      <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+        {{option.specie}}
+      </mat-option>
+    </mat-autocomplete>
+    <button matSuffix mat-button aria-label="Detail" matTooltip="Go to details" (click)="getDetails()"><mat-icon>search</mat-icon></button>
+  </mat-form-field>
+  
+</form>
+<table matSort (matSortChange)="sortData($event)">
+  <tr>
+    <th mat-sort-header="id">Id</th>
+    <th mat-sort-header="specie">Specie</th>
+    <th mat-sort-header="status">Status</th>
+  </tr>
+
+  <tr *ngFor="let microalgae of sortedData" class="microalgae">
+    <td><a routerLink="/detail/{{microalgae.id}}" ><span class="badge">{{microalgae.id}}</span></a></td>
+    <td><a routerLink="/detail/{{microalgae.id}}" >{{microalgae.specie}}</a></td>
+    <td><a routerLink="/detail/{{microalgae.id}}" >{{microalgae.status}}</a></td>
+  </tr>
+</table>
