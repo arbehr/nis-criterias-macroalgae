@@ -187,12 +187,12 @@ export class MicroalgaeVerifyComponent implements OnInit {
     switch(value) {
       case "8.1.1":
       case "8.1.2":
-        this.updateSelectedValues([1, 2, 3, 4, 5, 6, 8, 9], ['','','','','','','','']);
-        this.updateDisabledValues([1, 2, 3, 4, 5, 6, 8, 9], [true,true,true,true,true,true,false,true]);
+        this.updateSelectedValues([8, 9], ['','']);
+        this.updateDisabledValues([8, 9], [false,true]);
           break;
       case "8.2.1":
-        this.updateSelectedValues([1, 2, 3, 4, 5, 6, 8, 9], ['','','','','','','','']);
-        this.updateDisabledValues([1, 2, 3, 4, 5, 6, 8, 9], [true,true,true,true,true,true,true,false]);
+        this.updateSelectedValues([8, 9], ['','']);
+        this.updateDisabledValues([8, 9], [true,false]);
           break;
     }
   }
@@ -202,13 +202,13 @@ export class MicroalgaeVerifyComponent implements OnInit {
       case "9.1":
       case "9.2":
         this.status = "INVASIVE";
-        this.updateSelectedValues([1, 2, 3, 4, 5, 6, 9], ['','','','','','','']);
-        this.updateDisabledValues([1, 2, 3, 4, 5, 6, 9], [true,true,true,true,true,true,true]);
+        this.updateSelectedValues([9], ['']);
+        this.updateDisabledValues([9], [true]);
         break;
       case "9.3":
         this.status = "";
-        this.updateSelectedValues([1, 2, 3, 4, 5, 6, 9], ['','','','','','','']);
-        this.updateDisabledValues([1, 2, 3, 4, 5, 6, 9], [true,true,true,true,true,true,false]);
+        this.updateSelectedValues([9], ['']);
+        this.updateDisabledValues([9], [false]);
         break;
     }
   }

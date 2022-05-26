@@ -20,3 +20,8 @@
 .mat-form-field-infix {
     width: 80%;
 }
+
+::ng-deep .mat-vertical-stepper-content {
+    visibility: visible !important;
+    height: 100% !important;
+}
