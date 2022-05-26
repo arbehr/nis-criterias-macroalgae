@@ -1,6 +1,6 @@
 <mat-stepper orientation="vertical">
   <mat-step state="check">
-    <ng-template matStepLabel>1. Origin / Type locality</ng-template>
+    <ng-template matStepLabel>1. Origin</ng-template>
     <ng-template matStepContent>
       <mat-form-field appearance="fill">
         <mat-label>Select an option</mat-label>
@@ -19,7 +19,6 @@
   <mat-step *ngIf="!disabledValues[1]" state="check">
     <ng-template matStepLabel>2. Distribution</ng-template>
     <ng-template matStepContent>
-      <p>This content was also rendered lazily</p>
       <mat-form-field appearance="fill">
         <mat-label>Select an option</mat-label>
         <mat-select [(ngModel)]="selectedValues[1]" name="distribution" 

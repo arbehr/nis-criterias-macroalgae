@@ -4,7 +4,7 @@ export const originTypeLoc = [
     { value: '1.3', viewValue: '1.3 - Mediterranean' }, 
     { value: '1.4', viewValue: '1.4 - NW Atlantic' },
     { value: '1.5', viewValue: '1.5 - Other ocean basin (including South Atlantic)' },
-    { value: '1.6', viewValue: '1.6 - Uncertain'}
+    { value: '1.6', viewValue: '1.6 - Any one of the above'}
 ];
 
 export const distribution_21 = [
@@ -14,7 +14,7 @@ export const distribution_21 = [
 ];
 
 export const distribution_22 = [
-    { value: '2.2.1', viewValue: '2.2.1 - Present only in other ocean basins (excepto Azores)' }
+    { value: '2.2.1', viewValue: '2.2.1 - Present only in other ocean basins' }
 ];
 
 export const distribution_23 = [
@@ -62,12 +62,12 @@ export const reports = [
 
 export const conspicuousness = [
     { value: '5.1', viewValue: '5.1 - Conspicuous species' },
-    { value: '5.2', viewValue: '5.2 - Not conspicuous species'}
+    { value: '5.2', viewValue: '5.2 - Inconspicuous'}
 ];
 
 export const studies = [
     { value: '6.1', viewValue: '6.1 - Taxonomic group well studied (before the first register) in the region' },
-    { value: '6.2', viewValue: '6.2 - Taxonomic group not well studied (before the first register) in the region'}
+    { value: '6.2', viewValue: '6.2 - Taxonomic group not well studied (before the first register) in the region or of difficult taxonomy'}
 ];
 
 export const origin = [
