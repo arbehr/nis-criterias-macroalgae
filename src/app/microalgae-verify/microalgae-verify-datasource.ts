@@ -1,10 +1,6 @@
 export const originTypeLoc = [
-    { value: '1.1', viewValue: '1.1 - Macaronesia' },
-    { value: '1.2', viewValue: '1.2 - NE Atlantic' }, 
-    { value: '1.3', viewValue: '1.3 - Mediterranean' }, 
-    { value: '1.4', viewValue: '1.4 - NW Atlantic' },
-    { value: '1.5', viewValue: '1.5 - Other ocean basin (including South Atlantic)' },
-    { value: '1.6', viewValue: '1.6 - Any one of the above'}
+    { value: '1.1', viewValue: '1.1 - Ocean basin (except N Atlantic)' },
+    { value: '1.2', viewValue: '1.2 - Other' }
 ];
 
 export const distribution_21 = [

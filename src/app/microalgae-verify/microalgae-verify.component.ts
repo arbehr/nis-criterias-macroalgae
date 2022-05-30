@@ -73,7 +73,7 @@ export class MicroalgaeVerifyComponent implements OnInit {
 
   onChangeOriginTypeLoc(value: string) {
     switch(value) {
-      case "1.5":
+      case "1.1":
         this.status = "NIS";
         this.updateSelectedValues([1, 2, 3, 4, 5, 6, 7, 8, 9], ['','','','','','','','','']);
         this.updateDisabledValues([1, 2, 3, 4, 5, 6, 7, 8, 9], [true,true,true,true,true,true,false,true,true]);
