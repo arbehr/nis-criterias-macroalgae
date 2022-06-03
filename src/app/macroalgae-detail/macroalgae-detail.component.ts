@@ -14,21 +14,23 @@ export class MacroalgaeDetailComponent implements OnInit {
   @Input() macroalgae?: Macroalgae;
 
   macroalgae_list = MACROALGAE;
-
+  macroalgae_id: number;
   selectedMacroalgae?: Macroalgae;
 
   constructor(
     private route: ActivatedRoute,
     private location: Location
-  ) { }
+  ) {
+    this.macroalgae_id = 0;
+  }
 
   ngOnInit(): void {
     this.getMacroalgae();
   }
 
   getMacroalgae(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.selectedMacroalgae = this.macroalgae_list[id-1];
+    this.macroalgae_id = Number(this.route.snapshot.paramMap.get('id'));
+    this.selectedMacroalgae = this.macroalgae_list[this.macroalgae_id-1];
   }
 
   goBack(): void {

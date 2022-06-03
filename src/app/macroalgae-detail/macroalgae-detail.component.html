@@ -1,5 +1,9 @@
 <div *ngIf="selectedMacroalgae">
-    <h2>{{selectedMacroalgae.specie | uppercase}}</h2>
+    <h2>{{selectedMacroalgae.specie | uppercase}}
+    <button mat-button aria-label="Edit" matTooltip="Edit" routerLink="/verify/{{ macroalgae_id }}">
+      <mat-icon>edit</mat-icon> 
+    </button>
+    </h2>
     <mat-list>
       <mat-divider *ngIf="selectedMacroalgae.origin_typeLoc"></mat-divider>
       <mat-list-item *ngIf="selectedMacroalgae.origin_typeLoc">
