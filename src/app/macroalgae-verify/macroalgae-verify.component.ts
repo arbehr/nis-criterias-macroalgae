@@ -1,17 +1,17 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { originTypeLoc, distribution_21, distribution_22, distribution_23, 
   vector, reports, conspicuousness, studies, origin, economicEcologicalImpact,
-  criteriaInvasivenessSpread, criteriaInvasivenessOther} from './microalgae-verify-datasource'
+  criteriaInvasivenessSpread, criteriaInvasivenessOther} from './macroalgae-verify-datasource'
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { MACROALGAE } from '../mock-macroalgae';
-import { Microalgae } from '../macroalgae';
+import { Macroalgae } from '../macroalgae';
 
 @Component({
-  selector: 'app-microalgae-verify',
-  templateUrl: './microalgae-verify.component.html',
-  styleUrls: ['./microalgae-verify.component.css'],
+  selector: 'app-macroalgae-verify',
+  templateUrl: './macroalgae-verify.component.html',
+  styleUrls: ['./macroalgae-verify.component.css'],
   providers: [
     {
       provide: STEPPER_GLOBAL_OPTIONS,
@@ -19,7 +19,7 @@ import { Microalgae } from '../macroalgae';
     },
   ],
 })
-export class MicroalgaeVerifyComponent implements OnInit {
+export class MacroalgaeVerifyComponent implements OnInit {
 
   originTypeLoc: any;
   distribution_21: any;
@@ -36,8 +36,8 @@ export class MicroalgaeVerifyComponent implements OnInit {
   selectedValues: any;
   disabledValues: any;
   status: any;
-  selectedMicroalgae?: Microalgae;
-  microalgae_list = MACROALGAE;
+  selectedMacroalgae?: Macroalgae;
+  macroalgae_list = MACROALGAE;
 
   ngOnInit(): void {
   }
@@ -47,16 +47,16 @@ export class MicroalgaeVerifyComponent implements OnInit {
     private location: Location
   ) { 
     this.initValues();
-    this.getMicroalgae();
+    this.getMacroalgae();
 
   }
 
-  getMicroalgae(): void {
+  getMacroalgae(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.selectedMicroalgae = this.microalgae_list[id-1];
-    if(this.selectedMicroalgae) {
-      let arrayOfKeys = Object.keys(this.selectedMicroalgae);
-      let arrayOfValues = Object.values(this.selectedMicroalgae);
+    this.selectedMacroalgae = this.macroalgae_list[id-1];
+    if(this.selectedMacroalgae) {
+      let arrayOfKeys = Object.keys(this.selectedMacroalgae);
+      let arrayOfValues = Object.values(this.selectedMacroalgae);
       for(let i = 0; i < arrayOfKeys.length; i++) {
         let value = "";
         if(arrayOfValues[i].toString().indexOf(" - ") !== -1) {

@@ -1,21 +1,21 @@
 /* HeroesComponent's private CSS styles */
-.microalgae {
+.macroalgae {
     margin: 0 0 2em 0;
     list-style-type: none;
     padding: 0;
     width: 40em;
 }
   
-.microalgae td {
+.macroalgae td {
     position: relative;
     cursor: pointer;
 }
  
-.microalgae td:hover {
+.macroalgae td:hover {
     left: .1em;
 }
   
-.microalgae a {
+.macroalgae a {
     color: #333;
     text-decoration: none;
     background-color: #EEE;
@@ -26,17 +26,17 @@
     width: 100%;
 }
   
-.microalgae a:hover {
+.macroalgae a:hover {
     color: #2c3a41;
     background-color: #e6e6e6;
 }
   
-.microalgae a:active {
+.macroalgae a:active {
     background-color: #525252;
     color: #fafafa;
 }
   
-.microalgae .badge {
+.macroalgae .badge {
     display: inline-block;
     font-size: small;
     color: white;
@@ -53,7 +53,7 @@
     border-radius: 4px 0 0 4px;
 }
   
-.microalgae .name {
+.macroalgae .name {
     align-self: center;
 }
 

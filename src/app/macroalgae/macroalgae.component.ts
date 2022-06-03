@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Microalgae } from '../microalgae';
-import { MICROALGAE } from '../mock-microalgae';
+import { Macroalgae } from '../macroalgae';
+import { MACROALGAE } from '../mock-macroalgae';
 import { Sort } from '@angular/material/sort';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
@@ -8,22 +8,22 @@ import { map, startWith } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-microalgae',
-  templateUrl: './microalgae.component.html',
-  styleUrls: ['./microalgae.component.css']
+  selector: 'app-macroalgae',
+  templateUrl: './macroalgae.component.html',
+  styleUrls: ['./macroalgae.component.css']
 })
-export class MicroalgaeComponent implements OnInit {
+export class MacroalgaeComponent implements OnInit {
 
   myControl = new FormControl();
-  options: Microalgae[] = MICROALGAE;
-  filteredOptions: Observable<Microalgae[]>;
+  options: Macroalgae[] = MACROALGAE;
+  filteredOptions: Observable<Macroalgae[]>;
 
-  microalgae_list = MICROALGAE;
+  macroalgae_list = MACROALGAE;
 
-  sortedData: Microalgae[];
+  sortedData: Macroalgae[];
 
   constructor(private router: Router) {
-    this.sortedData = this.microalgae_list.slice();
+    this.sortedData = this.macroalgae_list.slice();
     this.filteredOptions = this.myControl.valueChanges.pipe(
       startWith(''),
       map(value => (typeof value === 'string' ? value : value.name)),
@@ -32,7 +32,7 @@ export class MicroalgaeComponent implements OnInit {
   }
 
   sortData(sort: Sort) {
-    const data = this.microalgae_list.slice();
+    const data = this.macroalgae_list.slice();
     if (!sort.active || sort.direction === '') {
       this.sortedData = data;
       return;
@@ -61,11 +61,11 @@ export class MicroalgaeComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  displayFn(microalgae: Microalgae): string {
-    return microalgae && microalgae.specie ? microalgae.specie : '';
+  displayFn(macroalgae: Macroalgae): string {
+    return macroalgae && macroalgae.specie ? macroalgae.specie : '';
   }
 
-  private _filter(specie: string): Microalgae[] {
+  private _filter(specie: string): Macroalgae[] {
     const filterValue = specie.toLowerCase();
 
     return this.options.filter(option => option.specie.toLowerCase().includes(filterValue));

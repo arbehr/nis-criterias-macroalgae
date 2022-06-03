@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'nis-criterias-microalgae'`, () => {
+  it(`should have as title 'nis-criterias-macroalgae'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('nis-criterias-microalgae');
+    expect(app.title).toEqual('nis-criterias-macroalgae');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('nis-criterias-microalgae app is running!');
+    expect(compiled.querySelector('.content span')?.textContent).toContain('nis-criterias-macroalgae app is running!');
   });
 });

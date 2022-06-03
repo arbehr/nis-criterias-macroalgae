@@ -1,4 +1,4 @@
-export interface Microalgae {
+export interface Macroalgae {
   id: number;
   specie: string;
   origin_typeLoc: string;

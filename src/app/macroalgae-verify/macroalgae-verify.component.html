@@ -1,3 +1,6 @@
+<div *ngIf="selectedMacroalgae">
+  <h2>{{selectedMacroalgae.specie | uppercase}}</h2>
+</div>
 <mat-stepper orientation="vertical">
   <mat-step state="check">
     <ng-template matStepLabel>1. Origin</ng-template>

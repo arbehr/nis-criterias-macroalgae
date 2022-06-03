@@ -3,9 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MicroalgaeComponent } from './microalgae/microalgae.component';
-import { MicroalgaeDetailComponent } from './microalgae-detail/microalgae-detail.component';
-import { MicroalgaeVerifyComponent } from './microalgae-verify/microalgae-verify.component';
+import { MacroalgaeComponent } from './macroalgae/macroalgae.component';
+import { MacroalgaeDetailComponent } from './macroalgae-detail/macroalgae-detail.component';
+import { MacroalgaeVerifyComponent } from './macroalgae-verify/macroalgae-verify.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatInputModule } from '@angular/material/input';
@@ -24,9 +24,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
-    MicroalgaeComponent,
-    MicroalgaeDetailComponent,
-    MicroalgaeVerifyComponent
+    MacroalgaeComponent,
+    MacroalgaeDetailComponent,
+    MacroalgaeVerifyComponent
   ],
   imports: [
     BrowserModule,

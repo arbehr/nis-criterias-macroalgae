@@ -25,3 +25,8 @@
     visibility: visible !important;
     height: 100% !important;
 }
+
+div h2{
+	margin-left: 1%;
+    margin-top: 2%;
+}

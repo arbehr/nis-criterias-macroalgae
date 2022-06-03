@@ -1,6 +1,6 @@
-import { Microalgae } from './microalgae';
+import { Macroalgae } from './macroalgae';
 
-export const MICROALGAE: Microalgae[] = [
+export const MACROALGAE: Macroalgae[] = [
     { id: 1, specie: 'Caulerpa webbiana Montagne', origin_typeLoc: '1.2 - Other', distribution: '2.3.26 - Present in N Atlantic (NE / NW) / Mediterranean / Macaronesia, other ocean basins', vector: '3.1 - Associated to a vector', reports: '', conspicuousness: '', studies: '', origin: '', impact: '8.1.2 - Affects native biodiversity', criteria_inv_spread: '9.1 - Spreds very quickly / 9.2 - It dispersed in a few years (<5) more 1 island', criteria_inv_other: '', status: 'INVASIVE' },
     { id: 2, specie: 'Caulerpa prolifera (Forsskål) J.V.Lamouroux', origin_typeLoc: '1.2 - Other', distribution: '2.3.26 - Present in N Atlantic (NE / NW) / Mediterranean / Macaronesia, other ocean basins', vector: '3.2 - Not associated to a vector', reports: '4.2 - Recent report (after 1974)', conspicuousness: '5.1 - Conspicuous species', studies: '', origin: '', impact: '8.1.2 - Affects native biodiversity', criteria_inv_spread: '9.1 - Spreds very quickly in the area where it has settled', criteria_inv_other: '', status: 'INVASIVE' },
     { id: 3, specie: 'Lophocladia trichoclados (C.Agardh) F.Schmitz', origin_typeLoc: '1.2 - Other', distribution: '2.3.26 - Present in N Atlantic (NE / NW) / Mediterranean / Macaronesia, other ocean basins', vector: '3.2 - Not associated to a vector', reports: '4.2 - Recent report (after 1974)', conspicuousness: '5.1 - Conspicuous species', studies: '', origin: '', impact: '8.1.2 - Affects native biodiversity', criteria_inv_spread: '9.1 - Spreds very quickly in the area where it has settled', criteria_inv_other: '', status: 'INVASIVE' },

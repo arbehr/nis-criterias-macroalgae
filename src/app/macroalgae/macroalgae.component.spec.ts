@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MicroalgaeDetailComponent } from './microalgae-detail.component';
+import { MacroalgaeComponent } from './macroalgae.component';
 
-describe('MicroalgaeDetailComponent', () => {
-  let component: MicroalgaeDetailComponent;
-  let fixture: ComponentFixture<MicroalgaeDetailComponent>;
+describe('MaroalgaeComponent', () => {
+  let component: MacroalgaeComponent;
+  let fixture: ComponentFixture<MacroalgaeComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MicroalgaeDetailComponent ]
+      declarations: [ MacroalgaeComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MicroalgaeDetailComponent);
+    fixture = TestBed.createComponent(MacroalgaeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

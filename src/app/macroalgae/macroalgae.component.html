@@ -19,9 +19,9 @@
     <th mat-sort-header="status">Status</th>
   </tr>
 
-  <tr *ngFor="let microalgae of sortedData" class="microalgae">
-    <td><a routerLink="/detail/{{microalgae.id}}" ><span class="badge">{{microalgae.id}}</span></a></td>
-    <td><a routerLink="/detail/{{microalgae.id}}" >{{microalgae.specie}}</a></td>
-    <td><a routerLink="/detail/{{microalgae.id}}" >{{microalgae.status}}</a></td>
+  <tr *ngFor="let macroalgae of sortedData" class="macroalgae">
+    <td><a routerLink="/detail/{{macroalgae.id}}" ><span class="badge">{{macroalgae.id}}</span></a></td>
+    <td><a routerLink="/detail/{{macroalgae.id}}" >{{macroalgae.specie}}</a></td>
+    <td><a routerLink="/detail/{{macroalgae.id}}" >{{macroalgae.status}}</a></td>
   </tr>
 </table>

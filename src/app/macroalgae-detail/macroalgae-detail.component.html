@@ -1,0 +1,55 @@
+<div *ngIf="selectedMacroalgae">
+    <h2>{{selectedMacroalgae.specie | uppercase}}</h2>
+    <mat-list>
+      <mat-divider *ngIf="selectedMacroalgae.origin_typeLoc"></mat-divider>
+      <mat-list-item *ngIf="selectedMacroalgae.origin_typeLoc">
+        <b>Origin: </b><span style="padding-left:20px"> {{ selectedMacroalgae.origin_typeLoc }} </span>
+      </mat-list-item>
+      <mat-divider *ngIf="selectedMacroalgae.origin_typeLoc"></mat-divider>
+      <mat-list-item *ngIf="selectedMacroalgae.distribution">
+        <b>Distribution: </b><span style="padding-left:20px"> {{ selectedMacroalgae.distribution }} </span>
+      </mat-list-item>
+      <mat-divider *ngIf="selectedMacroalgae.distribution"></mat-divider>
+      <mat-list-item *ngIf="selectedMacroalgae.vector">
+        <b>Vector: </b><span style="padding-left:20px"> {{ selectedMacroalgae.vector }} </span>
+      </mat-list-item>
+      <mat-divider *ngIf="selectedMacroalgae.vector"></mat-divider>
+      <mat-list-item *ngIf="selectedMacroalgae.reports">
+        <b>Reports: </b><span style="padding-left:20px"> {{ selectedMacroalgae.reports }} </span>
+      </mat-list-item>
+      <mat-divider *ngIf="selectedMacroalgae.reports"></mat-divider>
+      <mat-list-item *ngIf="selectedMacroalgae.conspicuousness">
+        <b>Conspicuousness: </b><span style="padding-left:20px"> {{ selectedMacroalgae.conspicuousness }} </span>
+      </mat-list-item>
+      <mat-divider *ngIf="selectedMacroalgae.conspicuousness"></mat-divider>
+      <mat-list-item *ngIf="selectedMacroalgae.studies">
+        <b>Studies: </b><span style="padding-left:20px"> {{ selectedMacroalgae.studies }} </span> 
+      </mat-list-item>
+      <mat-divider *ngIf="selectedMacroalgae.studies"></mat-divider>
+      <mat-list-item *ngIf="selectedMacroalgae.origin">
+        <b>Origin: </b><span style="padding-left:20px"> {{ selectedMacroalgae.origin }} </span>
+      </mat-list-item>
+      <mat-divider *ngIf="selectedMacroalgae.origin"></mat-divider>
+      <mat-list-item *ngIf="selectedMacroalgae.impact">
+        <b>Economic and/or ecological impact: </b><span style="padding-left:20px"> {{ selectedMacroalgae.impact }} </span>
+      </mat-list-item>
+      <mat-divider *ngIf="selectedMacroalgae.impact"></mat-divider>
+      <mat-list-item *ngIf="selectedMacroalgae.criteria_inv_spread">
+        <b>Criteria invasiveness - spread: </b><span style="padding-left:20px"> {{ selectedMacroalgae.criteria_inv_spread }} </span>
+      </mat-list-item>
+      <mat-divider *ngIf="selectedMacroalgae.criteria_inv_spread"></mat-divider>
+      <mat-list-item *ngIf="selectedMacroalgae.criteria_inv_other">
+        <b>Criteria invasiveness - other: </b><span style="padding-left:20px"> {{ selectedMacroalgae.criteria_inv_other }} </span>
+      </mat-list-item>
+      <mat-divider *ngIf="selectedMacroalgae.criteria_inv_other"></mat-divider>
+      <mat-list-item *ngIf="selectedMacroalgae.status">
+        <b>Status: </b><span style="padding-left:20px"> {{ selectedMacroalgae.status }} </span>
+      </mat-list-item>
+      <mat-divider *ngIf="selectedMacroalgae.status"></mat-divider>
+    </mat-list>
+</div>
+<div *ngIf="!selectedMacroalgae">
+  <h2>Macroalgae not found!</h2>
+</div>
+
+<button mat-button aria-label="Back" matTooltip="Back" (click)="goBack()"><mat-icon>arrow_back</mat-icon></button>
