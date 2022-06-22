@@ -3,6 +3,7 @@ import { Macroalgae } from '../macroalgae';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { MACROALGAE } from '../mock-macroalgae';
+import { MacroalgaeService } from '../services/macroalgae.service';
 
 @Component({
   selector: 'app-macroalgae-detail',
@@ -19,7 +20,8 @@ export class MacroalgaeDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private location: Location
+    private location: Location,
+    private service: MacroalgaeService
   ) {
     this.macroalgae_id = 0;
   }
@@ -37,4 +39,10 @@ export class MacroalgaeDetailComponent implements OnInit {
     this.location.back();
   }
 
+  deleteMacroalgae() {
+    let id = Number(this.route.snapshot.paramMap.get('id'));
+    this.service.delete(id).subscribe();
+    //TODO set message
+    //this.goBack();
+  }
 }

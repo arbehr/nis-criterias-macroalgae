@@ -3,9 +3,12 @@ import { Macroalgae } from '../macroalgae';
 import { MACROALGAE } from '../mock-macroalgae';
 import { Sort } from '@angular/material/sort';
 import { FormControl } from '@angular/forms';
-import { Observable } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { map, startWith, catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { MacroalgaeService } from '../services/macroalgae.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ErrorDialogComponent } from '../shared/components/error-dialog/error-dialog.component';
 
 @Component({
   selector: 'app-macroalgae',
@@ -17,13 +20,23 @@ export class MacroalgaeComponent implements OnInit {
   myControl = new FormControl();
   options: Macroalgae[] = MACROALGAE;
   filteredOptions: Observable<Macroalgae[]>;
+  macroalgae_list$: Observable<Macroalgae[]>;
+  displayedColumns: string[] = ['id', 'specie', 'status'];
+  
+  //sortedData: Observable<Macroalgae[]>;
 
-  macroalgae_list = MACROALGAE;
-
-  sortedData: Macroalgae[];
-
-  constructor(private router: Router) {
-    this.sortedData = this.macroalgae_list.slice();
+  constructor(private router: Router, 
+    private macroalgaeService: MacroalgaeService,
+    public dialog: MatDialog) {
+    this.macroalgae_list$ = this.macroalgaeService.list()
+    .pipe(
+      catchError(error => {
+        this.onError('Erro ao carregar macroalgae.')
+        return of([]);
+      })
+    );
+    
+    //this.sortedData = this.macroalgae_list.slice();
     this.filteredOptions = this.myControl.valueChanges.pipe(
       startWith(''),
       map(value => (typeof value === 'string' ? value : value.name)),
@@ -31,7 +44,13 @@ export class MacroalgaeComponent implements OnInit {
     );
   }
 
-  sortData(sort: Sort) {
+  onError(errorMsg: string) {
+    this.dialog.open(ErrorDialogComponent, {
+      data: errorMsg
+    });
+  }
+
+  /*sortData(sort: Sort) {
     const data = this.macroalgae_list.slice();
     if (!sort.active || sort.direction === '') {
       this.sortedData = data;
@@ -52,7 +71,7 @@ export class MacroalgaeComponent implements OnInit {
           return 0;
       }
     });
-  }
+  }*/
 
   compare(a: number | string, b: number | string, isAsc: boolean) {
     return (a < b ? -1 : 1) * (isAsc ? 1 : -1);

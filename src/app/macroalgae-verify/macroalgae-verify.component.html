@@ -1,6 +1,6 @@
-<div *ngIf="selectedMacroalgae">
-  <h2>{{selectedMacroalgae.specie | uppercase}}</h2>
-</div>
+<mat-form-field>
+  <input matInput placeholder="Specie" [(ngModel)]="specie">
+</mat-form-field>
 <mat-stepper orientation="vertical">
   <mat-step state="check">
     <ng-template matStepLabel>1. Origin</ng-template>
@@ -198,7 +198,8 @@
 </mat-stepper>
 
 <div id="footer">
-  <p class="text-footer"> Status: {{status}} </p>
+  <p class="text-footer"> Status: {{status}} 
+    <button *ngIf="status" matSuffix mat-button aria-label="Save" matTooltip="Save macroalgae" (click)="onSave()"><mat-icon>save</mat-icon></button>
+  </p>
 </div>
-
   

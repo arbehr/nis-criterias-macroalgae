@@ -3,6 +3,7 @@
     <button mat-button aria-label="Edit" matTooltip="Edit" routerLink="/verify/{{ macroalgae_id }}">
       <mat-icon>edit</mat-icon> 
     </button>
+    <button matSuffix mat-button aria-label="Delete" matTooltip="Delete macroalgae" (click)="deleteMacroalgae()"><mat-icon>delete</mat-icon></button>
     </h2>
     <mat-list>
       <mat-divider *ngIf="selectedMacroalgae.origin_typeLoc"></mat-divider>

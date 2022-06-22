@@ -20,13 +20,19 @@ import { MatListModule } from '@angular/material/list';
 import { MatSortModule } from '@angular/material/sort';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { MatTableModule } from '@angular/material/table';
+import { MatCardModule } from '@angular/material/card';   
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatDialogModule } from '@angular/material/dialog';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     MacroalgaeComponent,
     MacroalgaeDetailComponent,
-    MacroalgaeVerifyComponent
+    MacroalgaeVerifyComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,7 +51,13 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatListModule,
     MatSortModule,
     MatAutocompleteModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule,
+    MatTableModule,
+    MatCardModule,
+    MatProgressSpinnerModule,
+    MatDialogModule,
+    SharedModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -7,6 +7,9 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { MACROALGAE } from '../mock-macroalgae';
 import { Macroalgae } from '../macroalgae';
+import { MacroalgaeService } from '../services/macroalgae.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Observable } from 'rxjs/internal/Observable';
 
 @Component({
   selector: 'app-macroalgae-verify',
@@ -20,7 +23,9 @@ import { Macroalgae } from '../macroalgae';
   ],
 })
 export class MacroalgaeVerifyComponent implements OnInit {
-
+  id = 0;
+  record: any;
+  specie = "";
   originTypeLoc: any;
   distribution_21: any;
   distribution_22: any;
@@ -36,7 +41,7 @@ export class MacroalgaeVerifyComponent implements OnInit {
   selectedValues: any;
   disabledValues: any;
   status: any;
-  selectedMacroalgae?: Macroalgae;
+  selectedMacroalgae$: Observable<Macroalgae>;
   macroalgae_list = MACROALGAE;
 
   ngOnInit(): void {
@@ -44,59 +49,67 @@ export class MacroalgaeVerifyComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private location: Location
+    private location: Location,
+    private service: MacroalgaeService,
+    private snackBar: MatSnackBar
   ) { 
     this.initValues();
-    this.getMacroalgae();
-
+    this.selectedMacroalgae$ = new Observable;
+    this.id = Number(this.route.snapshot.paramMap.get('id'));
+    if(this.id) {
+      this.selectedMacroalgae$ = this.service.get(this.id);
+      this.getMacroalgae();
+    }
   }
 
   getMacroalgae(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.selectedMacroalgae = this.macroalgae_list[id-1];
-    if(this.selectedMacroalgae) {
-      let arrayOfKeys = Object.keys(this.selectedMacroalgae);
-      let arrayOfValues = Object.values(this.selectedMacroalgae);
-      for(let i = 0; i < arrayOfKeys.length; i++) {
-        let value = "";
-        if(arrayOfValues[i].toString().indexOf(" - ") !== -1) {
-          value = arrayOfValues[i].toString().split(" - ")[0];
-          this.selectedValues[i-2] = value;
+    if(this.selectedMacroalgae$) {
+      this.selectedMacroalgae$.subscribe(
+        record => {
+          let arrayOfKeys = Object.keys(record);
+          let arrayOfValues = Object.values(record);
+          console.log(arrayOfKeys)
+          for(let i = 0; i < arrayOfKeys.length; i++) {
+            let value = arrayOfValues[i];
+            this.selectedValues[i-2] = value;
 
-          switch(arrayOfKeys[i]) {
-            case "origin_typeLoc":
-              this.onChangeOriginTypeLoc(value);
-              break;
-            case "distribution":
-              this.onChangeDistribution(value);
-              break;
-            case "vector":
-              this.onChangeVector(value);
-              break;
-            case "reports":
-              this.onChangeReports(value);
-              break;
-            case "conspicuousness":
-              this.onChangeConspicuouness(value);
-              break;
-            case "studies":
-              this.onChangeStudies(value);
-              break;
-            case "origin":
-              this.onChangeOrigin(value);
-              break;
-            case "impact":
-              this.onChangeEconomic_ecologic_impact(value);
-              break;
-            case "criteria_inv_spread":
-              this.onChangeCriteria_invasiveness_spread(value);
-              break;
-            case "criteria_inv_other":
-              this.onChangeCriteria_invasiveness_other(value);
-              break;
+            switch(arrayOfKeys[i]) {
+              case "specie":
+                this.specie = value;
+                break;
+              case "origin_typeLoc":
+                this.onChangeOriginTypeLoc(value);
+                break;
+              case "distribution":
+                this.onChangeDistribution(value);
+                break;
+              case "vector":
+                this.onChangeVector(value);
+                break;
+              case "reports":
+                this.onChangeReports(value);
+                break;
+              case "conspicuousness":
+                this.onChangeConspicuouness(value);
+                break;
+              case "studies":
+                this.onChangeStudies(value);
+                break;
+              case "origin":
+                this.onChangeOrigin(value);
+                break;
+              case "impact":
+                this.onChangeEconomic_ecologic_impact(value);
+                break;
+              case "criteria_inv_spread":
+                this.onChangeCriteria_invasiveness_spread(value);
+                break;
+              case "criteria_inv_other":
+                this.onChangeCriteria_invasiveness_other(value);
+                break;
+            }
           }
-        }
-      }
+        });
     }
   }
 
@@ -128,9 +141,25 @@ export class MacroalgaeVerifyComponent implements OnInit {
     this.selectedValues = ['', '', '', '', '', '', '', '', '', ''];
     this.disabledValues = [false, true, true, true, true, true, true, true, true, true];
     this.status = "";
+    this.record = {
+      conspicuousness:"",
+      criteria_inv_other: "",
+      criteria_inv_spread: "",
+      distribution: "",
+      id: 0,
+      impact: "",
+      origin: "",
+      origin_typeLoc: "",
+      reports: "",
+      specie: "",
+      status: "",
+      studies: "",
+      vector: ""
+    }
   }
 
   onChangeOriginTypeLoc(value: string) {
+    this.selectedValues[0] = value;
     switch(value) {
       case "1.1":
         this.status = "NIS";
@@ -146,6 +175,7 @@ export class MacroalgaeVerifyComponent implements OnInit {
   }
 
   onChangeDistribution(value: string) {
+    this.selectedValues[1] = value;
     switch(value) {
       case "2.1.1":
       case "2.1.2":
@@ -168,6 +198,7 @@ export class MacroalgaeVerifyComponent implements OnInit {
   }
 
   onChangeVector(value: string) {
+    this.selectedValues[2] = value;
     switch(value) {
       case "3.1":
         this.status = "NIS";
@@ -183,6 +214,7 @@ export class MacroalgaeVerifyComponent implements OnInit {
   }
 
   onChangeReports(value: string) {
+    this.selectedValues[3] = value;
     switch(value) {
       case "4.1":
         this.status = "NATIVE";
@@ -198,6 +230,7 @@ export class MacroalgaeVerifyComponent implements OnInit {
   }
 
   onChangeConspicuouness(value: string) {
+    this.selectedValues[4] = value;
     switch(value) {
       case "5.1":
         this.status = "NIS";
@@ -213,6 +246,7 @@ export class MacroalgaeVerifyComponent implements OnInit {
   }
 
   onChangeStudies(value: string) {
+    this.selectedValues[5] = value;
     switch(value) {
       case "6.2":
         this.status = "DATA DEFFICIENT";
@@ -228,6 +262,7 @@ export class MacroalgaeVerifyComponent implements OnInit {
   }
 
   onChangeOrigin(value: string) {
+    this.selectedValues[6] = value;
     switch(value) {
       case "7.1":
         this.status = "CRYPTOGENIC";
@@ -243,6 +278,7 @@ export class MacroalgaeVerifyComponent implements OnInit {
   }
 
   onChangeEconomic_ecologic_impact(value: string) {
+    this.selectedValues[7] = value;
     switch(value) {
       case "8.1.1":
       case "8.1.2":
@@ -257,6 +293,7 @@ export class MacroalgaeVerifyComponent implements OnInit {
   }
 
   onChangeCriteria_invasiveness_spread(value: string) {
+    this.selectedValues[8] = value;
     switch(value) {
       case "9.1":
       case "9.2":
@@ -273,6 +310,7 @@ export class MacroalgaeVerifyComponent implements OnInit {
   }
 
   onChangeCriteria_invasiveness_other(value: any) {
+    this.selectedValues[9] = value;
     if(value.length < 2) {
       this.status = "NOT INVASIVE";
     } else {
@@ -280,5 +318,41 @@ export class MacroalgaeVerifyComponent implements OnInit {
     }
   }
 
+  onSave() {
+    this.updateRecord();
+    if(this.id != 0) {
+      this.service.update(this.record)
+      .subscribe(
+        result => console.log(result), error => this.onError);
+    } else {
+      this.service.save(this.record)
+      .subscribe(
+        result => console.log(result), error => this.onError);
+    }
+  }
 
+  private onError() {
+    this.snackBar.open('Error in saving macroalgae', '', {duration: 5000});
+  }
+
+  private onSuccess() {
+    this.snackBar.open('Macroalgae saved', '', {duration: 5000});
+    this.location.back();
+  }
+
+  private updateRecord() {
+    this.record.origin_typeLoc = this.selectedValues[0];
+    this.record.distribution = this.selectedValues[1];
+    this.record.vector = this.selectedValues[2];
+    this.record.reports = this.selectedValues[3];
+    this.record.conspicuousness = this.selectedValues[4];
+    this.record.studies = this.selectedValues[5];
+    this.record.origin = this.selectedValues[6];
+    this.record.economicEcologicalImpact = this.selectedValues[7];
+    this.record.criteria_inv_spread = this.selectedValues[8]; 
+    this.record.criteria_inv_other = this.selectedValues[9];
+    this.record.status = this.status;
+    this.record.specie = this.specie;
+    this.record.id = this.id;
+  }
 }
