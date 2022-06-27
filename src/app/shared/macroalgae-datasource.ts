@@ -73,13 +73,13 @@ export const origin = [
 
 export const economicEcologicalImpact = [
     { value: '8.1.1', viewValue: '8.1.1 - Direct or indirect economic impact (e.g. cables, hulls, propellers, nets, other structures)' },
-    { value: '8.1.2', viewValue: '8.1.2 -  Affects native biodiversity' },
-    { value: '8.2.1', viewValue: '8.2.1 - Impact unknown' }
+    { value: '8.1.2', viewValue: '8.1.2 - Affects native biodiversity' },
+    { value: '8.1.3', viewValue: '8.1.3 - Impact unknown' }
 ];
 
 export const criteriaInvasivenessSpread = [
-    { value: '9.1', viewValue: '9.1  - Spreads very quickly in the area where it has settled' },
-    { value: '9.2', viewValue: '9.2  - It dispersed in a few years (<5) to more than one island' },
+    { value: '9.1', viewValue: '9.1 - Spreads very quickly in the area where it has settled' },
+    { value: '9.2', viewValue: '9.2 - It dispersed in a few years (<5) to more than one island' },
     { value: '9.3', viewValue: '9.3 - None' }
 ];
 

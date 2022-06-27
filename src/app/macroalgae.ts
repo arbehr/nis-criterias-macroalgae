@@ -8,7 +8,7 @@ export interface Macroalgae {
   conspicuousness: string;
   studies: string;
   origin: string;
-  impact: string;
+  economic_ecological_impact: string;
   criteria_inv_spread: string;
   criteria_inv_other: string;
   status: string;

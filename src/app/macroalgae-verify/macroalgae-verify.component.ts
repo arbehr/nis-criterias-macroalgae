@@ -1,15 +1,17 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { originTypeLoc, distribution_21, distribution_22, distribution_23, 
   vector, reports, conspicuousness, studies, origin, economicEcologicalImpact,
-  criteriaInvasivenessSpread, criteriaInvasivenessOther} from './macroalgae-verify-datasource'
+  criteriaInvasivenessSpread, criteriaInvasivenessOther} from '../shared/macroalgae-datasource'
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { MACROALGAE } from '../mock-macroalgae';
 import { Macroalgae } from '../macroalgae';
 import { MacroalgaeService } from '../services/macroalgae.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
+import { InfoDialogComponent } from '../shared/components/info-dialog/info-dialog.component';
 import { Observable } from 'rxjs/internal/Observable';
+import { delay } from 'rxjs/operators';
 
 @Component({
   selector: 'app-macroalgae-verify',
@@ -51,7 +53,7 @@ export class MacroalgaeVerifyComponent implements OnInit {
     private route: ActivatedRoute,
     private location: Location,
     private service: MacroalgaeService,
-    private snackBar: MatSnackBar
+    public dialog: MatDialog
   ) { 
     this.initValues();
     this.selectedMacroalgae$ = new Observable;
@@ -68,49 +70,62 @@ export class MacroalgaeVerifyComponent implements OnInit {
         record => {
           let arrayOfKeys = Object.keys(record);
           let arrayOfValues = Object.values(record);
-          console.log(arrayOfKeys)
           for(let i = 0; i < arrayOfKeys.length; i++) {
             let value = arrayOfValues[i];
-            this.selectedValues[i-2] = value;
-
-            switch(arrayOfKeys[i]) {
-              case "specie":
-                this.specie = value;
-                break;
-              case "origin_typeLoc":
-                this.onChangeOriginTypeLoc(value);
-                break;
-              case "distribution":
-                this.onChangeDistribution(value);
-                break;
-              case "vector":
-                this.onChangeVector(value);
-                break;
-              case "reports":
-                this.onChangeReports(value);
-                break;
-              case "conspicuousness":
-                this.onChangeConspicuouness(value);
-                break;
-              case "studies":
-                this.onChangeStudies(value);
-                break;
-              case "origin":
-                this.onChangeOrigin(value);
-                break;
-              case "impact":
-                this.onChangeEconomic_ecologic_impact(value);
-                break;
-              case "criteria_inv_spread":
-                this.onChangeCriteria_invasiveness_spread(value);
-                break;
-              case "criteria_inv_other":
-                this.onChangeCriteria_invasiveness_other(value);
-                break;
+            if(value) {
+              switch(arrayOfKeys[i]) {
+                case "specie":
+                  this.specie = value;
+                  break;
+                case "origin_typeLoc":
+                  this.selectedValues[0] = value;
+                  this.disabledValues[0] = false;
+                  break;
+                case "distribution":
+                  this.selectedValues[1] = value;
+                  this.disabledValues[1] = false;
+                  break;
+                case "vector":
+                  this.selectedValues[2] = value;
+                  this.disabledValues[2] = false;
+                  break;
+                case "reports":
+                  this.selectedValues[3] = value;
+                  this.disabledValues[3] = false;
+                  break;
+                case "conspicuousness":
+                  this.selectedValues[4] = value;
+                  this.disabledValues[4] = false;
+                  break;
+                case "studies":
+                  this.selectedValues[5] = value;
+                  this.disabledValues[5] = false;
+                  break;
+                case "origin":
+                  this.selectedValues[6] = value;
+                  this.disabledValues[6] = false;
+                  break;
+                case "economic_ecological_impact":
+                  this.selectedValues[7] = value;
+                  this.disabledValues[7] = false;
+                  break;
+                case "criteria_inv_spread":
+                  this.selectedValues[8] = value;
+                  this.disabledValues[8] = false;
+                  break;
+                case "criteria_inv_other":
+                  this.selectedValues[9] = value;
+                  this.disabledValues[9] = false;
+                  break;
+                case "status":
+                  this.status = value;
+                  break;
+              }
             }
           }
-        });
+      });
     }
+    console.log(this.selectedValues)
   }
 
   updateSelectedValues(indexes: number[], values: string[]) {
@@ -147,7 +162,7 @@ export class MacroalgaeVerifyComponent implements OnInit {
       criteria_inv_spread: "",
       distribution: "",
       id: 0,
-      impact: "",
+      economic_ecological_impact: "",
       origin: "",
       origin_typeLoc: "",
       reports: "",
@@ -172,6 +187,7 @@ export class MacroalgaeVerifyComponent implements OnInit {
         this.updateDisabledValues([1, 2, 3, 4, 5, 6, 7, 8, 9], [false,true,true,true,true,true,true,true,true]);
         break;
     }
+    console.log(this.selectedValues)
   }
 
   onChangeDistribution(value: string) {
@@ -195,6 +211,7 @@ export class MacroalgaeVerifyComponent implements OnInit {
         this.updateDisabledValues([2, 3, 4, 5, 6, 7, 8, 9], [false,true,true,true,true,true,true,true]);
         break;
     }
+    console.log(this.selectedValues)
   }
 
   onChangeVector(value: string) {
@@ -285,7 +302,7 @@ export class MacroalgaeVerifyComponent implements OnInit {
         this.updateSelectedValues([8, 9], ['','']);
         this.updateDisabledValues([8, 9], [false,true]);
           break;
-      case "8.2.1":
+      case "8.1.3":
         this.updateSelectedValues([8, 9], ['','']);
         this.updateDisabledValues([8, 9], [true,false]);
           break;
@@ -323,21 +340,29 @@ export class MacroalgaeVerifyComponent implements OnInit {
     if(this.id != 0) {
       this.service.update(this.record)
       .subscribe(
-        result => console.log(result), error => this.onError);
+        result => this.onSuccess(), error => this.onError);
     } else {
       this.service.save(this.record)
       .subscribe(
-        result => console.log(result), error => this.onError);
+        result => this.onSuccess(), error => this.onError);
     }
   }
 
   private onError() {
-    this.snackBar.open('Error in saving macroalgae', '', {duration: 5000});
+    this.openDialog('Error in saving macroalgae!');
   }
 
   private onSuccess() {
-    this.snackBar.open('Macroalgae saved', '', {duration: 5000});
-    this.location.back();
+    this.openDialog('Macroalgae saved.');
+  }
+
+  private openDialog(msg: string) {
+    const dialogRef = this.dialog.open(InfoDialogComponent, {
+      data: msg
+    });
+    dialogRef.afterClosed().subscribe(() => {
+      this.location.back();
+    });
   }
 
   private updateRecord() {
@@ -348,9 +373,9 @@ export class MacroalgaeVerifyComponent implements OnInit {
     this.record.conspicuousness = this.selectedValues[4];
     this.record.studies = this.selectedValues[5];
     this.record.origin = this.selectedValues[6];
-    this.record.economicEcologicalImpact = this.selectedValues[7];
+    this.record.economic_ecological_impact = this.selectedValues[7];
     this.record.criteria_inv_spread = this.selectedValues[8]; 
-    this.record.criteria_inv_other = this.selectedValues[9];
+    this.record.criteria_inv_other = this.selectedValues[9].toString();
     this.record.status = this.status;
     this.record.specie = this.specie;
     this.record.id = this.id;

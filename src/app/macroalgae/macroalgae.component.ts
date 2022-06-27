@@ -8,7 +8,7 @@ import { map, startWith, catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { MacroalgaeService } from '../services/macroalgae.service';
 import { MatDialog } from '@angular/material/dialog';
-import { ErrorDialogComponent } from '../shared/components/error-dialog/error-dialog.component';
+import { InfoDialogComponent } from '../shared/components/info-dialog/info-dialog.component';
 
 @Component({
   selector: 'app-macroalgae',
@@ -45,7 +45,7 @@ export class MacroalgaeComponent implements OnInit {
   }
 
   onError(errorMsg: string) {
-    this.dialog.open(ErrorDialogComponent, {
+    const dialogRef =this.dialog.open(InfoDialogComponent, {
       data: errorMsg
     });
   }

@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MacroalgaeComponent } from './macroalgae.component';
+import { ConfirmDialogComponent } from './confirm-dialog.component';
 
-describe('MaroalgaeComponent', () => {
-  let component: MacroalgaeComponent;
-  let fixture: ComponentFixture<MacroalgaeComponent>;
+describe('ConfirmDialogComponent', () => {
+  let component: ConfirmDialogComponent;
+  let fixture: ComponentFixture<ConfirmDialogComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MacroalgaeComponent ]
+      declarations: [ ConfirmDialogComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MacroalgaeComponent);
+    fixture = TestBed.createComponent(ConfirmDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
