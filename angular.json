@@ -69,10 +69,12 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "nis-criterias-macroalgae:build:production"
+              "browserTarget": "nis-criterias-macroalgae:build:production",
+              "proxyConfig": "proxy.conf.js"
             },
             "development": {
-              "browserTarget": "nis-criterias-macroalgae:build:development"
+              "browserTarget": "nis-criterias-macroalgae:build:development",
+              "proxyConfig": "proxy.conf.js"
             }
           },
           "defaultConfiguration": "development"
