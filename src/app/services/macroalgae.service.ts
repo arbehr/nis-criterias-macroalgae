@@ -8,7 +8,7 @@ import { delay, first, tap } from 'rxjs/operators';
 })
 export class MacroalgaeService {
 
-  private readonly API = 'api/macroalgae';
+  private readonly API = 'http://localhost:8080/api/macroalgae';
 
   constructor(private httpClient: HttpClient) { }
 

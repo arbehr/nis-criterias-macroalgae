@@ -1,0 +1,8 @@
+h2, .form-group {
+	margin-left: 1%;
+    margin-top: 2%;
+}
+
+#username, #password {
+    width: 200px;
+}

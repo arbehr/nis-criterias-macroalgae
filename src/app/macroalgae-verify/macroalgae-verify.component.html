@@ -199,7 +199,7 @@
 
 <div id="footer">
   <p class="text-footer"> Status: {{status}} 
-    <button *ngIf="status" matSuffix mat-button aria-label="Save" matTooltip="Save macroalgae" (click)="onSave()"><mat-icon>save</mat-icon></button>
+    <button *ngIf="status && isLoggedIn" matSuffix mat-button aria-label="Save" matTooltip="Save macroalgae" (click)="onSave()"><mat-icon>save</mat-icon></button>
   </p>
 </div>
   

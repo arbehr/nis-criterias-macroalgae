@@ -4,7 +4,7 @@
     <mat-label>Specie</mat-label>
     <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto">
     <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
-      <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+      <mat-option *ngFor="let option of macroalgae_list$ | async" [value]="option">
         {{option.specie}}
       </mat-option>
     </mat-autocomplete>
@@ -12,20 +12,7 @@
   </mat-form-field>
   
 </form>
-<!--<table>
-<table matSort (matSortChange)="sortData($event)">
-  <tr>
-    <th mat-sort-header="id">Id</th>
-    <th mat-sort-header="specie">Species</th>
-    <th mat-sort-header="status">Status</th>
-  </tr>
 
-  <tr *ngFor="let macroalgae of macroalgae_list[0]" class="macroalgae">
-    <td><a routerLink="/detail/{{macroalgae.id}}" ><span class="badge">{{macroalgae.id}}</span></a></td>
-    <td><a routerLink="/detail/{{macroalgae.id}}" >{{macroalgae.specie}}</a></td>
-    <td><a routerLink="/detail/{{macroalgae.id}}" >{{macroalgae.status}}</a></td>
-  </tr>
-</table>-->
 <mat-card>
   <div *ngIf="macroalgae_list$ | async as macroalgae_list; else loading">
     <table mat-table [dataSource]="macroalgae_list" class="mat-elevation-z8">

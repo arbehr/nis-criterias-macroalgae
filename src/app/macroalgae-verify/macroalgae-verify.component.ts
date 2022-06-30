@@ -12,6 +12,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { InfoDialogComponent } from '../shared/components/info-dialog/info-dialog.component';
 import { Observable } from 'rxjs/internal/Observable';
 import { delay } from 'rxjs/operators';
+import { AuthenticationService } from '../services/auth.service';
 
 @Component({
   selector: 'app-macroalgae-verify',
@@ -45,15 +46,18 @@ export class MacroalgaeVerifyComponent implements OnInit {
   status: any;
   selectedMacroalgae$: Observable<Macroalgae>;
   macroalgae_list = MACROALGAE;
+  isLoggedIn = false;
 
   ngOnInit(): void {
+    this.isLoggedIn = this.authenticationService.isUserLoggedIn();
   }
 
   constructor(
     private route: ActivatedRoute,
     private location: Location,
     private service: MacroalgaeService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private authenticationService: AuthenticationService
   ) { 
     this.initValues();
     this.selectedMacroalgae$ = new Observable;

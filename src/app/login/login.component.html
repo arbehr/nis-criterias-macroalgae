@@ -1,0 +1,23 @@
+<div class="container col-lg-6">
+    <h2>Login</h2>
+    <div class="card">
+      <div class="card-body">
+        <form class="form-group">
+          <div class="form-group">
+            <label for="email">Username: </label>
+            <input type="text" class="form-control" id="username" [(ngModel)]="username" placeholder="Enter username"
+              name="username">
+          </div>
+          <div class="form-group">
+            <label for="pwd">Password: </label>
+            <input type="password" class="form-control" [(ngModel)]="password" id="password" placeholder="Enter password"
+              name="password">
+          </div>
+          <br>
+          <button mat-button aria-label="Login" matTooltip="Login" (click)="handleLogin()"><mat-icon>exit_to_app</mat-icon></button>
+          <div class="alert alert-warning" *ngIf='invalidLogin'>{{errorMessage}}</div>
+          <div class="alert alert-success" *ngIf='loginSuccess'>{{successMessage}}</div>
+        </form>
+      </div>
+    </div>
+  </div>
