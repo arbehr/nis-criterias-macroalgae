@@ -50,29 +50,6 @@ export class MacroalgaeComponent implements OnInit {
     });
   }
 
-  /*sortData(sort: Sort) {
-    const data = this.macroalgae_list.slice();
-    if (!sort.active || sort.direction === '') {
-      this.sortedData = data;
-      return;
-    }
-
-    this.sortedData = data.sort((a, b) => {
-      const isAsc = sort.direction === 'asc';
-      console.log(this.compare(a.id, b.id, isAsc))
-      switch (sort.active) {
-        case 'id':
-          return this.compare(a.id, b.id, isAsc);
-        case 'specie':
-          return this.compare(a.specie, b.specie, isAsc);
-        case 'status':
-          return this.compare(a.status, b.status, isAsc);
-        default:
-          return 0;
-      }
-    });
-  }*/
-
   compare(a: number | string, b: number | string, isAsc: boolean) {
     return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
   }

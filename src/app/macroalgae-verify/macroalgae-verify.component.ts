@@ -129,7 +129,6 @@ export class MacroalgaeVerifyComponent implements OnInit {
           }
       });
     }
-    console.log(this.selectedValues)
   }
 
   updateSelectedValues(indexes: number[], values: string[]) {
@@ -191,7 +190,6 @@ export class MacroalgaeVerifyComponent implements OnInit {
         this.updateDisabledValues([1, 2, 3, 4, 5, 6, 7, 8, 9], [false,true,true,true,true,true,true,true,true]);
         break;
     }
-    console.log(this.selectedValues)
   }
 
   onChangeDistribution(value: string) {
@@ -215,7 +213,6 @@ export class MacroalgaeVerifyComponent implements OnInit {
         this.updateDisabledValues([2, 3, 4, 5, 6, 7, 8, 9], [false,true,true,true,true,true,true,true]);
         break;
     }
-    console.log(this.selectedValues)
   }
 
   onChangeVector(value: string) {
