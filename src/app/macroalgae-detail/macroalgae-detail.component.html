@@ -1,9 +1,9 @@
 <div *ngIf="selectedMacroalgae$ | async as selectedMacroalgae">
     <h2>{{selectedMacroalgae.specie | uppercase}}
-    <button mat-button aria-label="Edit" matTooltip="Edit" routerLink="/verify/{{ id }}">
+    <button *ngIf="isLoggedIn" mat-button aria-label="Edit" matTooltip="Edit" routerLink="/verify/{{ id }}">
       <mat-icon>edit</mat-icon> 
     </button>
-    <button matSuffix mat-button aria-label="Delete" matTooltip="Delete macroalgae" (click)="onDeleteMacroalgae()"><mat-icon>delete</mat-icon></button>
+    <button *ngIf="isLoggedIn" matSuffix mat-button aria-label="Delete" matTooltip="Delete macroalgae" (click)="onDeleteMacroalgae()"><mat-icon>delete</mat-icon></button>
     </h2>
     <mat-list>
       <mat-divider *ngIf="selectedMacroalgae.origin_typeLoc"></mat-divider>

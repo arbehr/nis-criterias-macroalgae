@@ -10,6 +10,7 @@ import { originTypeLoc, distribution_21, distribution_22, distribution_23,
   criteriaInvasivenessSpread, criteriaInvasivenessOther} from '../shared/macroalgae-datasource'
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../shared/components/confirm-dialog/confirm-dialog.component';
+import { AuthenticationService } from '../services/auth.service';
 
 @Component({
   selector: 'app-macroalgae-detail',
@@ -35,12 +36,14 @@ export class MacroalgaeDetailComponent implements OnInit {
   criteriaInvasivenessOther = "";
   status = "";
   selectedMacroalgae$: Observable<Macroalgae>;
+  isLoggedIn = false;
 
   constructor(
     private route: ActivatedRoute,
     private location: Location,
     private service: MacroalgaeService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private authenticationService: AuthenticationService
   ) {
     this.id = 0;
     this.selectedMacroalgae$ = new Observable;
@@ -50,6 +53,7 @@ export class MacroalgaeDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.isLoggedIn = this.authenticationService.isUserLoggedIn();
   }
 
   getMacroalgae() {
