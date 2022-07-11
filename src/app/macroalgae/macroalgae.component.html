@@ -4,7 +4,7 @@
     <mat-label>Specie</mat-label>
     <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto">
     <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
-      <mat-option *ngFor="let option of macroalgae_list$ | async" [value]="option">
+      <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
         {{option.specie}}
       </mat-option>
     </mat-autocomplete>
@@ -15,19 +15,19 @@
 
 <mat-card>
   <div *ngIf="macroalgae_list$ | async as macroalgae_list; else loading">
-    <table mat-table [dataSource]="macroalgae_list" class="mat-elevation-z8">
+    <table mat-table [dataSource]="sortedData" matSort (matSortChange)="sortData($event)" class="mat-elevation-z8">
       <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef>Id</th>
+        <th mat-header-cell mat-sort-header *matHeaderCellDef>Id</th>
         <td mat-cell *matCellDef="let macroalgae"><a routerLink="/detail/{{macroalgae.id}}">{{macroalgae.id}} </a></td>
       </ng-container>
 
       <ng-container matColumnDef="specie">
-        <th mat-header-cell *matHeaderCellDef> Species </th>
+        <th mat-header-cell mat-sort-header *matHeaderCellDef> Species </th>
         <td mat-cell *matCellDef="let macroalgae"><a routerLink="/detail/{{macroalgae.id}}" >{{macroalgae.specie}}</a></td>
       </ng-container>
 
       <ng-container matColumnDef="status">
-        <th mat-header-cell *matHeaderCellDef> Status </th>
+        <th mat-header-cell mat-sort-header *matHeaderCellDef> Status </th>
         <td mat-cell *matCellDef="let macroalgae"><a routerLink="/detail/{{macroalgae.id}}" >{{macroalgae.status}}</a></td>
       </ng-container>
 
